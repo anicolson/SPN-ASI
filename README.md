@@ -17,4 +17,4 @@ SPFlow is modified to accomadate the implementation.
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
- -->
+
