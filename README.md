@@ -21,8 +21,20 @@ SPFlow is modified to accomadate the implementation.
 Installation
 -----
 
+Prerequisites for GPU usage:
+
+* [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive)
+* [cuDNN (>= 7.4.1)](https://developer.nvidia.com/cudnn)
+
 To install:
 
 1. `git clone https://github.com/anicolson/SPN-Spk-Rec.git`
 2. `cd SPN-Spk-Rec`
 3. `git clone https://github.com/SPFlow/SPFlow.git`
+4. `git clone https://github.com/anicolson/DeepXi.git`
+5. `virtualenv --system-site-packages -p python3 ~/venv/SPN-Spk-Rec`
+6. `source ~/venv/SPN-Spk-Rec/bin/activate`
+7. `pip install --upgrade tensorflow-gpu`
+8. `pip install -r ./DeepXi/requirements.txt`
+
+If a GPU is not going to be used, replace step 4 with: `pip install --upgrade tensorflow`
