@@ -25,3 +25,4 @@ To install:
 
 1. `git clone https://github.com/anicolson/SPN-Spk-Rec.git`
 2. `cd SPN-Spk-Rec`
+3. `git clone https://github.com/SPFlow/SPFlow.git`
