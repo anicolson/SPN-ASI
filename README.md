@@ -18,3 +18,10 @@ SPFlow is modified to accomadate the implementation.
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
 
+Installation
+-----
+
+To install:
+
+1. `git clone https://github.com/anicolson/SPN-Spk-Rec.git`
+2. `cd SPN-Spk-Rec`
