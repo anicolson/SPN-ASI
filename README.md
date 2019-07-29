@@ -7,21 +7,20 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 Sum-Product Networks for Robust Automatic Speaker Recognition
 ====
 
-Sum-product networks with Gaussuan leaves are used here as speaker models for automatic speaker recognition. An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used here to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an \textit{a priori} SNR estimator is used, with a threshold of 0 dB.
+Sum-product networks with Gaussuan leaves are used here as speaker models for automatic speaker recognition. An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used here to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
 
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
 
-Implementation
+SPN speaker models
 ====
-The SPN speaker models are implemented in [**SPFlow**](https://github.com/SPFlow/SPFlow) version 0.0.4, please check out the SPFlow repository [here](https://github.com/SPFlow/SPFlow). The SPFlow library is modified to include bounded marginalisation, with the main modification in *spn.structure.leaves.parametric.gaussian_likelihood*:
+The SPN speaker models are implemented in [**SPFlow**](https://github.com/SPFlow/SPFlow) version 0.0.4, please check out the SPFlow repository [here](https://github.com/SPFlow/SPFlow), and star their repository. The SPFlow library is modified to include bounded marginalisation, with the main modification in *spn.structure.leaves.parametric.gaussian_likelihood* as follows:
 
 ```
 def gaussian_likelihood(node, data=None, dtype=np.float64, bmarg=None, ibm=None):
     probs, marg_ids, observations = leaf_marginalized_likelihood(node, data, dtype)
     scipy_obj, params = get_scipy_obj_params(node)
-    # probs[~marg_ids] = scipy_obj.pdf(observations, **params)
     if bmarg:
         ibm = ibm[:, node.scope]
         probs_reliable = np.expand_dims(scipy_obj.pdf(observations, **params), axis=1)
@@ -32,10 +31,11 @@ def gaussian_likelihood(node, data=None, dtype=np.float64, bmarg=None, ibm=None)
     return probs
 
 ```
-In the latest version of SPFLow (0.0.34), this function has been changed to *spn.structure.leaves.parametric.continuous_likelihood* 
+In the latest version of SPFLow (0.0.34), this function has been changed to *spn.structure.leaves.parametric.continuous_likelihood*. [*Log spectral subband energies* (LSSEs)](https://maxwell.ict.griffith.edu.au/spl/publications/papers/icsps17_aaron.pdf) are used as the input feature to each of the SPN speaker models. 
 
-
-
+IBM estimation using an *a priori* SNR estimator
+====
+[**Deep Xi**](https://github.com/anicolson/DeepXi) is a deep learning approach to *a priori* SNR estimation, as described [here](https://doi.org/10.1016/j.specom.2019.06.002). A threshold of 0 dB is applied to the *a priori* SNR estimate given by Deep Xi, to give the IBM estimate. The IBM estimate is then used to identify the reliable LSSEs.
 
 Installation
 -----
