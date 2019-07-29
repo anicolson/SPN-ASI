@@ -51,6 +51,7 @@ Each filename in data/noisy_speech should coprise of the following: *w_x_y_zdB.w
 How to use
 -----
 **Inference on clean speech:**
+Note: the TIMIT corpus must be in the correct directory prior to running the following:
 
 ```
 python3 main.py --ver '0a' --test_clean_speech 1 
@@ -58,12 +59,16 @@ python3 main.py --ver '0a' --test_clean_speech 1
 Version *0a* is what is used in the paper.
 
 **Inference on noisy speech:**
+Note: the TIMIT corpus and the noisy speech must be in the correct directories prior to running the following:
+
 ```
 python3 main.py --ver '0a' --test_noisy_speech 1 --mft 'bmarg'
 ```
 Use *--mft 'bmarg'*, *--mft 'marg'*, or *--mft 'none'* to detirmine what type of marginalisation is used.
 
+
 **Training:**
+Note: the TIMIT corpus must be in the correct directory prior to running the following:
 
 ```
 python3 main.py --ver 'new_models' --train 1 --verbose 1 --min_instances_slice 50 --threshold 0.3
