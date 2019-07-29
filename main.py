@@ -113,10 +113,10 @@ def test_noisy_speech(sess=None, net=None, args=None):
 			correct = 0; total = 0
 			for k in range(test_size):
 				for j in ['_sa1_', '_sa2_']:
-					noisy_speech_file = args.NOISY_SPEECH_DIR + '/' + args.spk_list[k]['spk_id'] + j + args.noise_src[i] + '_' + args.snr[q] + '.wav'
 					if os.path.isfile(args.NOISY_SPEECH_DIR + '/' + args.spk_list[k]['spk_id'] + j + 
 							args.noise_src[i] + '_' + args.snr[q] + '.wav'):
-						wav, wav_len, _, _ = spn_batch._batch(args.NOISY_SPEECH_DIR, noisy_speech_file, [])
+						wav, wav_len, _, _ = spn_batch._batch(args.NOISY_SPEECH_DIR, args.spk_list[k]['spk_id'] + j + 
+							args.noise_src[i] + '_' + args.snr[q] + '.wav', [])
 						lsse = featpy.lsse(wav, wav_len, args.Nw, args.Ns, args.NFFT, args.fs, args.H)
 						if args.mft == 'marg' or args.mft == 'bmarg': IBM_hat = ibm_hat(sess, net, wav, wav_len, args)
 						if args.mft == 'marg': lsse = np.where(IBM_hat, lsse, np.full_like(lsse, np.nan))
@@ -124,12 +124,13 @@ def test_noisy_speech(sess=None, net=None, args=None):
 							lsse, args.spk_list[j]['spk_id'], bmarg=bmarg_flag, ibm=IBM_hat) for j in range(test_size)))
 						total += 1
 						if sll[np.argmax(sll[:,0].astype(np.float32)),1] in args.spk_list[k]['spk_id']: correct += 1
-					print("corr=%i, total=%i, noise=%s, SNR=%s, mft=%s, ver=%s." % (correct, total, args.noise_src[i], args.snr[q], args.mft, args.ver), end="\r")
+						print("corr=%i, total=%i, noise=%s, SNR=%s, mft=%s, ver=%s." % (correct, total, args.noise_src[i], args.snr[q], args.mft, args.ver), end="\r")
+			if total > 0: 
 				print("\nAccuracy: %3.2f%%." % (100*(correct/total)))
 				with open("results.txt", "a") as f:
 					f.write("%s@%s: acc=%3.2f%%, corr=%i, tot=%i, mft=%s, ver=%s.\n" % (args.noise_src[i], args.snr[q], 100*(correct/total), 
 					correct, total, args.mft, args.ver))
-	print('Complete.')
+	print('\nComplete.')
 
 ## ADDITIONAL ARGUMENTS
 def add_args(args):
@@ -174,7 +175,7 @@ if __name__ == '__main__':
 	spn_args = utils.args()
 	spn_args.DATA_DIR = 'data'
 	spn_args.TIMIT_DIR = 'data/timit'
-	spn_args.NOISY_SPEECH_DIR = 'data/timit_noisy'
+	spn_args.NOISY_SPEECH_DIR = 'data/noisy_speech'
 	spn_args.MODEL_DIR = 'model/' + spn_args.ver
 	spn_args = add_args(spn_args)
 
@@ -186,8 +187,8 @@ if __name__ == '__main__':
 	if spn_args.test_noisy_speech: 
 		
 		## NO MARGINALISATION
-		if spn_args.mft == 'none':
-			test_noisy_speech(None, None, spn_args)
+		if spn_args.mft == 'none': test_noisy_speech(None, None, spn_args)
+
 		else:
 			## DEEP XI FOR IBM ESTIMATION
 			deepxi_args = utils.args()
