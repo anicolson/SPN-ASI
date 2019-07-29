@@ -61,7 +61,7 @@ Version *0a* is what is used in the paper.
 ```
 python3 main.py --ver '0a' --test_noisy_speech 1 --mft 'bmarg'
 ```
-Use *--mft 'bmarg'*, *--mft 'marg'*, or *--mft None* to detirmine what type of marginalisation is used.
+Use *--mft 'bmarg'*, *--mft 'marg'*, or *--mft 'none'* to detirmine what type of marginalisation is used.
 
 **Training:**
 
