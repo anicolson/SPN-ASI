@@ -186,7 +186,7 @@ if __name__ == '__main__':
 	if spn_args.test_noisy_speech: 
 		
 		## NO MARGINALISATION
-		if spn_args.mft == None:
+		if spn_args.mft == 'none':
 			test_noisy_speech(None, None, spn_args)
 		else:
 			## DEEP XI FOR IBM ESTIMATION
