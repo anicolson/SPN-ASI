@@ -133,16 +133,10 @@ def test_noisy_speech(sess=None, net=None, args=None):
 
 ## ADDITIONAL ARGUMENTS
 def add_args(args):
-	args.DATA_DIR = expanduser("~") + '/data/SPN-Spk-Rec'
-	args.TIMIT_DIR = expanduser("~") + '/data/timit'
-	args.NOISY_SPEECH_DIR = expanduser("~") + '/data/tmp/noisy_speech'
-	args.MODEL_DIR = args.DATA_DIR + '/model/' + args.ver
 	if not os.path.exists(args.DATA_DIR): os.makedirs(args.DATA_DIR) # make data path directory.
 	if not os.path.exists(args.MODEL_DIR): os.makedirs(args.MODEL_DIR) # make model path directory.
-
 	args.snr = ['-5dB', '0dB', '5dB', '10dB', '15dB']
 	args.noise_src = ['voice-babble', 'street-music-26270', 'f16', 'factory-welding']
-
 	args.Nw = int(args.fs*args.Tw*0.001) # window length (samples).
 	args.Ns = int(args.fs*args.Ts*0.001) # window shift (samples).
 	args.NFFT = int(pow(2, np.ceil(np.log2(args.Nw)))) # number of DFT components.
@@ -178,6 +172,10 @@ if __name__ == '__main__':
 
 	## ARGUMENTS
 	spn_args = utils.args()
+	spn_args.DATA_DIR = '/data/SPN-Spk-Rec'
+	spn_args.TIMIT_DIR = expanduser("~") + '/data/timit'
+	spn_args.NOISY_SPEECH_DIR = expanduser("~") + '/data/tmp/noisy_speech'
+	spn_args.MODEL_DIR = 'model/' + spn_args.ver
 	spn_args = add_args(spn_args)
 
 	## TRAINING
