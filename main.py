@@ -174,7 +174,7 @@ if __name__ == '__main__':
 	spn_args = utils.args()
 	spn_args.DATA_DIR = 'data'
 	spn_args.TIMIT_DIR = 'data/timit'
-	spn_args.NOISY_SPEECH_DIR = '/data/timit_noisy'
+	spn_args.NOISY_SPEECH_DIR = 'data/timit_noisy'
 	spn_args.MODEL_DIR = 'model/' + spn_args.ver
 	spn_args = add_args(spn_args)
 
