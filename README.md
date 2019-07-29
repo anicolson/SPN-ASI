@@ -6,17 +6,35 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 -->
 Sum-Product Networks for Robust Automatic Speaker Recognition
 ====
-Please note that this repository is currently in its early stages
------
 
-Sum-product networks are used here for robust speaker recognition. The marginalisation missing feature approach is used as the model-compensation technique to improve the robustness. 
-
-SPFlow is modified to accomadate the implementation.
-
+Sum-product networks with Gaussuan leaves are used here as speaker models for automatic speaker recognition. An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used here to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an \textit{a priori} SNR estimator is used, with a threshold of 0 dB.
 
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
+
+Implementation
+====
+The SPN speaker models are implemented in [**SPFlow**](https://github.com/SPFlow/SPFlow) version 0.0.4, please check out the SPFlow repository [here](https://github.com/SPFlow/SPFlow). The SPFlow library is modified to include bounded marginalisation, with the main modification in *spn.structure.leaves.parametric.gaussian_likelihood*:
+
+```
+def gaussian_likelihood(node, data=None, dtype=np.float64, bmarg=None, ibm=None):
+    probs, marg_ids, observations = leaf_marginalized_likelihood(node, data, dtype)
+    scipy_obj, params = get_scipy_obj_params(node)
+    # probs[~marg_ids] = scipy_obj.pdf(observations, **params)
+    if bmarg:
+        ibm = ibm[:, node.scope]
+        probs_reliable = np.expand_dims(scipy_obj.pdf(observations, **params), axis=1)
+        probs_unreliable = np.expand_dims(scipy.stats.norm.cdf(observations, loc=params['loc'], scale=params['scale']), axis=1)
+        probs = np.where(ibm, probs_reliable, probs_unreliable)
+    else:
+        probs[~marg_ids] = scipy_obj.pdf(observations, **params)
+    return probs
+
+```
+In the latest version of SPFLow (0.0.34), this function has been changed to *spn.structure.leaves.parametric.continuous_likelihood* 
+
+
 
 
 Installation
