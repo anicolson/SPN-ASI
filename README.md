@@ -13,7 +13,7 @@ Sum-product networks with Gaussuan leaves are used here as speaker models for au
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
 
-SPN speaker models
+SPN speaker models in [**SPFlow**](https://github.com/SPFlow/SPFlow)
 ====
 The SPN speaker models are implemented in [**SPFlow**](https://github.com/SPFlow/SPFlow) version 0.0.4, please check out the SPFlow repository [here](https://github.com/SPFlow/SPFlow), and star their repository. The SPFlow library is modified to include bounded marginalisation, with the main modification in *spn.structure.leaves.parametric.gaussian_likelihood* as follows:
 
@@ -33,7 +33,7 @@ def gaussian_likelihood(node, data=None, dtype=np.float64, bmarg=None, ibm=None)
 ```
 In the latest version of SPFLow (0.0.34), this function has been changed to *spn.structure.leaves.parametric.continuous_likelihood*. [*Log spectral subband energies* (LSSEs)](https://maxwell.ict.griffith.edu.au/spl/publications/papers/icsps17_aaron.pdf) are used as the input feature to each of the SPN speaker models. 
 
-IBM estimation using an *a priori* SNR estimator
+IBM estimation using [**Deep Xi**](https://github.com/anicolson/DeepXi)
 ====
 [**Deep Xi**](https://github.com/anicolson/DeepXi) is a deep learning approach to *a priori* SNR estimation, as described [here](https://doi.org/10.1016/j.specom.2019.06.002). A threshold of 0 dB is applied to the *a priori* SNR estimate given by Deep Xi, to give the IBM estimate. The IBM estimate is then used to identify the reliable LSSEs.
 
