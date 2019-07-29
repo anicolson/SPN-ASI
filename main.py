@@ -184,35 +184,36 @@ if __name__ == '__main__':
 	## TESTING
 	if spn_args.test_clean_speech: test_clean_speech(spn_args)
 	if spn_args.test_noisy_speech: 
-
-		## DEEP XI FOR IBM ESTIMATION
-		deepxi_args = utils.args()
-		deepxi_args.ver = '3a'
-		deepxi_args.blocks = ['C3'] + ['B5']*40 + ['O1']
-		deepxi_args.epoch = 175
-		deepxi_args.stats_path = './DeepXi/stats'
-		deepxi_args.model_path = './DeepXi/model'
-		deepxi_args.train = False
-		deepxi_args = deepxi.deepxi_args(deepxi_args)
-		deepxi_args.infer = True
-		deepxi_graph = tf.Graph()
-		with deepxi_graph.as_default():
-			deepxi_net = deepxi.deepxi_net(deepxi_args)
-		config = utils.gpu_config(deepxi_args.gpu)
-		deepxi_sess = tf.Session(config=config, graph=deepxi_graph)
-		deepxi_net.saver.restore(deepxi_sess, deepxi_args.model_path + '/epoch-' + str(deepxi_args.epoch)) # load model for epoch.
-
+		
 		## NO MARGINALISATION
-		spn_args.mft = None
-		test_noisy_speech(None, None, spn_args)
+		if spn_args.mft == None:
+			test_noisy_speech(None, None, spn_args)
+		else:
+			## DEEP XI FOR IBM ESTIMATION
+			deepxi_args = utils.args()
+			deepxi_args.ver = '3a'
+			deepxi_args.blocks = ['C3'] + ['B5']*40 + ['O1']
+			deepxi_args.epoch = 175
+			deepxi_args.stats_path = './DeepXi/stats'
+			deepxi_args.model_path = './DeepXi/model'
+			deepxi_args.train = False
+			deepxi_args = deepxi.deepxi_args(deepxi_args)
+			deepxi_args.infer = True
+			deepxi_graph = tf.Graph()
+			with deepxi_graph.as_default():
+				deepxi_net = deepxi.deepxi_net(deepxi_args)
+			config = utils.gpu_config(deepxi_args.gpu)
+			deepxi_sess = tf.Session(config=config, graph=deepxi_graph)
+			deepxi_net.saver.restore(deepxi_sess, deepxi_args.model_path + '/epoch-' + str(deepxi_args.epoch)) # load model for epoch.
 
-		## MARGINALISATION
-		spn_args.mft = 'marg'
-		test_noisy_speech(deepxi_sess, deepxi_net, spn_args)
+			## MARGINALISATION
+			if spn_args.mft == 'marg':
+				test_noisy_speech(deepxi_sess, deepxi_net, spn_args)
 
-		## BOUNDED MARGINALISATION
-		spn_args.mft = 'bmarg'
-		test_noisy_speech(deepxi_sess, deepxi_net, spn_args)
+			## BOUNDED MARGINALISATION
+			if spn_args.mft == 'bmarg':
+				test_noisy_speech(deepxi_sess, deepxi_net, spn_args)
 
-		# CLOSE TF GRAPH
-		deepxi_sess.close()
+			# CLOSE TF GRAPH
+			deepxi_sess.close()
+
