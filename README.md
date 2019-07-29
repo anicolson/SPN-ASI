@@ -18,9 +18,6 @@ SPFlow is modified to accomadate the implementation.
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
 
-TIMIT corpus
------
-The TIMTI corpus is used for the  
 
 Installation
 -----
@@ -40,3 +37,13 @@ To install:
 6. `pip install -r requirements.txt`
 
 If a GPU is to be used, replace step 4 with: `pip install --upgrade tensorflow-gpu`
+
+TIMIT corpus
+-----
+Place the TIMIT corpus in the data path. E.g. the train directory for TIMIT should be located at data/timit/train. Similarly, the test directory for TIMIT should be located at data/timit/test.
+
+Noisy speech
+-----
+The noisy speech created from the clean speech files from the TIMIT corpus, and the noise of your choosing should be placed in data/noisy_speech. 
+
+Each filename in data/noisy_speech should coprise of the following: *w_x_y_zdB.wav*, where **w** is the speaker (e.g. *mmds0*), **x** is the utterance (e.g. *sa1*), **y** is the noise source (e.g. *f16*), and **z** is the SNR level in dB (e.g. *-5*). An example filename is as follows: *mjjj0_sa1_voice-babble_-5dB.wav*. 
