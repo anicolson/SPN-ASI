@@ -51,6 +51,7 @@ Each filename in data/noisy_speech should coprise of the following: *w_x_y_zdB.w
 How to use
 -----
 **Inference on clean speech:**
+
 Note: the TIMIT corpus must be in the correct directory prior to running the following:
 
 ```
@@ -59,6 +60,7 @@ python3 main.py --ver '0a' --test_clean_speech 1
 Version *0a* is what is used in the paper.
 
 **Inference on noisy speech:**
+
 Note: the TIMIT corpus and the noisy speech must be in the correct directories prior to running the following:
 
 ```
@@ -68,6 +70,7 @@ Use *--mft 'bmarg'*, *--mft 'marg'*, or *--mft 'none'* to detirmine what type of
 
 
 **Training:**
+
 Note: the TIMIT corpus must be in the correct directory prior to running the following:
 
 ```
