@@ -47,3 +47,24 @@ Noisy speech
 The noisy speech created from the clean speech files from the TIMIT corpus, and the noise of your choosing should be placed in data/noisy_speech. 
 
 Each filename in data/noisy_speech should coprise of the following: *w_x_y_zdB.wav*, where **w** is the speaker (e.g. *mmds0*), **x** is the utterance (e.g. *sa1*), **y** is the noise source (e.g. *f16*), and **z** is the SNR level in dB (e.g. *-5*). An example filename is as follows: *mjjj0_sa1_voice-babble_-5dB.wav*. 
+
+How to use
+-----
+**Inference on clean speech:**
+
+```
+python3 main.py --ver '0a' --test_clean_speech 1 
+```
+Version *0a* is what is used in the paper.
+
+**Inference on noisy speech:**
+```
+python3 main.py --ver '0a' --test_noisy_speech 1 --mft 'bmarg'
+```
+Use *--mft 'bmarg'*, *--mft 'marg'*, or *--mft None* to detirmine what type of marginalisation is used.
+
+**Training:**
+
+```
+python3 main.py --ver 'new_models' --train 1 --verbose 1 --min_instances_slice 50 --threshold 0.3
+```
