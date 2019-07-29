@@ -172,9 +172,9 @@ if __name__ == '__main__':
 
 	## ARGUMENTS
 	spn_args = utils.args()
-	spn_args.DATA_DIR = '/data/SPN-Spk-Rec'
-	spn_args.TIMIT_DIR = expanduser("~") + '/data/timit'
-	spn_args.NOISY_SPEECH_DIR = expanduser("~") + '/data/tmp/noisy_speech'
+	spn_args.DATA_DIR = 'data'
+	spn_args.TIMIT_DIR = 'data/timit'
+	spn_args.NOISY_SPEECH_DIR = '/data/timit_noisy'
 	spn_args.MODEL_DIR = 'model/' + spn_args.ver
 	spn_args = add_args(spn_args)
 
