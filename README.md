@@ -18,10 +18,14 @@ SPFlow is modified to accomadate the implementation.
 |----|
 | <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
 
+TIMIT corpus
+-----
+The TIMTI corpus is used for the  
+
 Installation
 -----
 
-Prerequisites for GPU usage:
+Optional, only required if using a GPU:
 
 * [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive)
 * [cuDNN (>= 7.4.1)](https://developer.nvidia.com/cudnn)
@@ -32,7 +36,7 @@ To install:
 2. `cd SPN-Spk-Rec`
 3. `virtualenv --system-site-packages -p python3 ~/venv/SPN-Spk-Rec`
 4. `source ~/venv/SPN-Spk-Rec/bin/activate`
-5. `pip install --upgrade tensorflow-gpu`
+5. `pip install --upgrade tensorflow`
 6. `pip install -r requirements.txt`
 
-If a GPU is not going to be used, replace step 4 with: `pip install --upgrade tensorflow`
+If a GPU is to be used, replace step 4 with: `pip install --upgrade tensorflow-gpu`
