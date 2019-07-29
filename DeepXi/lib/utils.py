@@ -185,6 +185,7 @@ def args():
 	## SPN
 	parser.add_argument('--min_instances_slice', default=50, type=int, help='Minimum number of instances to slice')
 	parser.add_argument('--threshold', default=0.3, type=float, help='Independence threshold')
+	parser.add_argument('--mft', default='bmarg', type=str, help='Missing feature approach type')
 
 	args = parser.parse_args()
 	return args
