@@ -11,7 +11,7 @@ Sum-product networks with Gaussuan leaves are used here as speaker models for au
 
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
-| <p align="center"> <b>Figure 1:</b> <a> SPN speaker model.</a> </p> |
+| <p align="center"> <b>Figure 1:</b> <a> SPN with univariate Gaussian leaves.</a> </p> |
 
 SPN speaker models in [**SPFlow**](https://github.com/SPFlow/SPFlow)
 ====
