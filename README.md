@@ -6,7 +6,8 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 -->
 Sum-Product Networks for Robust Automatic Speaker Recognition
 ====
-
+This repository is under early development 
+====
 Sum-product networks with Gaussuan leaves are used here as speaker models for automatic speaker recognition. An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used here to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
 
 |![](./spk_model.jpg "SPN speaker model.")|
@@ -51,7 +52,7 @@ To install:
 2. `cd SPN-Spk-Rec`
 3. `virtualenv --system-site-packages -p python3 ~/venv/SPN-Spk-Rec`
 4. `source ~/venv/SPN-Spk-Rec/bin/activate`
-5. `pip install --upgrade tensorflow`
+5. `pip install --upgrade tensorflow-gpu==1.14`
 6. `pip install -r requirements.txt`
 
 If a GPU is to be used, replace step 4 with: `pip install --upgrade tensorflow-gpu`
