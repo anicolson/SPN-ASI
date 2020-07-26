@@ -4,9 +4,9 @@ export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 -->
-Sum-Product Networks for Robust Automatic Speaker Recognition
+Sum-Product Networks for Robust Automatic Speaker Identification has been accepted to INTERSPEECH 2020
 ====
-This repository is under early development 
+This repository is under early development
 ====
 Sum-product networks with Gaussuan leaves are used here as speaker models for automatic speaker recognition. An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used here to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
 
