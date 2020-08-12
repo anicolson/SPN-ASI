@@ -7,7 +7,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 SPNs for Robust ASI
 ====
 
-Sum-product networks (SPNs) with Gaussian leaves are used here as speaker models for automatic speaker identification (ASI). An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
+Sum-product networks (SPNs) with Gaussian leaves are used here as speaker models for automatic speaker identification (ASI). An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([1](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
 
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
