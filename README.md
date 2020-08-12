@@ -4,11 +4,10 @@ export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 -->
-Sum-Product Networks for Robust Automatic Speaker Identification has been accepted to INTERSPEECH 2020
+SPNs for Robust ASI
 ====
-This repository is under early development
-====
-Sum-product networks with Gaussuan leaves are used here as speaker models for automatic speaker recognition. An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used here to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
+
+Sum-product networks (SPNs) with Gaussian leaves are used here as speaker models for automatic speaker identification (ASI). An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([link](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
 
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
@@ -48,21 +47,18 @@ Optional, only required if using a GPU:
 
 To install:
 
-1. `git clone https://github.com/anicolson/SPN-Spk-Rec.git`
-2. `cd SPN-Spk-Rec`
-3. `virtualenv --system-site-packages -p python3 ~/venv/SPN-Spk-Rec`
+1. `git clone https://github.com/anicolson/SPN-ASI.git`
+2. `cd SPN-ASI`
+3. `virtualenv --system-site-packages -p python3 ~/venv/SPN-ASI`
 4. `source ~/venv/SPN-Spk-Rec/bin/activate`
-5. `pip install --upgrade tensorflow-gpu==1.14`
 6. `pip install -r requirements.txt`
 
 If a GPU is to be used, replace step 4 with: `pip install --upgrade tensorflow-gpu`
 
-TIMIT corpus
+Dataset
 -----
 Place the TIMIT corpus in the data path. E.g. the train directory for TIMIT should be located at data/timit/train. Similarly, the test directory for TIMIT should be located at data/timit/test.
 
-Noisy speech
------
 The noisy speech created from the clean speech files from the TIMIT corpus, and the noise of your choosing should be placed in data/noisy_speech. 
 
 Each filename in data/noisy_speech should coprise of the following: *w_x_y_zdB.wav*, where **w** is the speaker (e.g. *mmds0*), **x** is the utterance (e.g. *sa1*), **y** is the noise source (e.g. *f16*), and **z** is the SNR level in dB (e.g. *-5*). An example filename is as follows: *mjjj0_sa1_voice-babble_-5dB.wav*. 
