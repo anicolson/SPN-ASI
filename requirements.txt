@@ -1,6 +1,4 @@
-joblib
-numpy
+spflow
 pysoundfile
-sklearn
-networkx
-scipy==1.1.0
+tensorflow
+tqdm

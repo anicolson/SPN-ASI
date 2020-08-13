@@ -1,1 +1,0 @@
-Place the train and test directories of the TIMIT corpus here.
