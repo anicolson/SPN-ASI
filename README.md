@@ -4,7 +4,7 @@ export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 -->
-SPNs for Robust ASI
+SPNs for robust ASI
 ====
 
 Sum-product networks (SPNs) with Gaussian leaves are used here as speaker models for automatic speaker identification (ASI). An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by Cook *et al.* ([1](https://doi.org/10.1016/S0167-6393(00)00034-0)), is used to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
@@ -24,15 +24,17 @@ To install:
 4. `source ~/venv/SPN-Spk-Rec/bin/activate`
 6. `pip install -r requirements.txt`
 
-If a GPU is to be used, replace step 4 with: `pip install --upgrade tensorflow-gpu`
-
 Dataset
 -----
-Place the TIMIT corpus in the data path. E.g. the train directory for TIMIT should be located at data/timit/train. Similarly, the test directory for TIMIT should be located at data/timit/test.
+**TIMIT corpus for clean speech:**
 
-The noisy speech created from the clean speech files from the TIMIT corpus, and the noise of your choosing should be placed in data/noisy_speech. 
+The speakers from the TIMIT corpus are used for the ASI system. The path to the TIMIT corpus is set in (`config.sh`)[].
 
-Each filename in data/noisy_speech should coprise of the following: *w_x_y_zdB.wav*, where **w** is the speaker (e.g. *mmds0*), **x** is the utterance (e.g. *sa1*), **y** is the noise source (e.g. *f16*), and **z** is the SNR level in dB (e.g. *-5*). An example filename is as follows: *mjjj0_sa1_voice-babble_-5dB.wav*. 
+**Noisy speech and *a priori* SNR estimates:**
+
+The noisy speech and *a priori* SNR estimates used for testing the ASI system. **These can be obtained from: [http://dx.doi.org/10.21227/nbec-q510](http://dx.doi.org/10.21227/nbec-q510).**
+
+is set in (`config.sh`)[].
 
 How to use
 -----
