@@ -4,10 +4,10 @@ export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 -->
-SPNs for robust ASI
+[SPNs for robust ASI](https://arxiv.org/abs/1910.11969)
 ====
 
-Sum-product networks (SPNs) with Gaussian leaves are used as speaker models for automatic speaker identification (ASI). An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by ([Cook *et al.*](https://doi.org/10.1016/S0167-6393(00)00034-0)), are used to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
+Sum-product networks (SPNs) with Gaussian leaves are used as speaker models for automatic speaker identification (ASI) [[1]](https://arxiv.org/abs/1910.11969). An example of an SPN with univariate Gaussian leaves is shown in Figure 1. Marginalisation and bounded marginalisation, as proposed by [Cook *et al.*](https://doi.org/10.1016/S0167-6393(00)00034-0), are used to significantly increase the robustness of the SPN speaker models to noise. To identify the reliable spectral components for marginalisation, an *a priori* SNR estimator is used.
 
 |![](./spk_model.jpg "SPN speaker model.")|
 |----|
@@ -25,13 +25,11 @@ Dataset
 -----
 **TIMIT corpus for clean speech:**
 
-The speakers from the TIMIT corpus are used for the ASI system. The path to the TIMIT corpus is set in [`config.sh`]().
+The clean speech for the speakers included in the TIMIT corpus are used to train the ASI system. The path to the TIMIT corpus is set in [`config.sh`]().
 
 **Noisy speech and *a priori* SNR estimates:**
 
-The noisy speech and *a priori* SNR estimates used for testing the ASI system. **These can be obtained from: [http://dx.doi.org/10.21227/nbec-q510](http://dx.doi.org/10.21227/nbec-q510).** Please see the [Deep Xi](https://github.com/anicolson/DeepXi) repository if you require outputs from an *a priori* SNR estimator.
-
-is set in [`config.sh`]().
+The noisy speech and *a priori* SNR estimates used for testing the ASI system. **The noisy speech and *a priori* SNR estimates can be obtained from: [http://dx.doi.org/10.21227/nbec-q510](http://dx.doi.org/10.21227/nbec-q510).** Please see the [Deep Xi](https://github.com/anicolson/DeepXi) repository if you require outputs from an *a priori* SNR estimator. The paths to the noisy speech and *a priori* SNR estimates are set in [`config.sh`]().
 
 How to use the ASI system
 -----
@@ -52,6 +50,6 @@ How to use the ASI system
 
 References
 -----
-Please cite the following when using Deep Xi:
+Please cite the following:
 
--->
+[[1] Nicolson, A., & Paliwal, K. K. (2020). Sum-Product Networks for Robust Automatic Speaker Identification. Proc. Interspeech 2020](https://arxiv.org/abs/1910.11969).
