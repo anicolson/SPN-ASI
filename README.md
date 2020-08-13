@@ -15,9 +15,6 @@ Sum-product networks (SPNs) with Gaussian leaves are used here as speaker models
 
 Installation
 -----
-
-To install:
-
 1. `git clone https://github.com/anicolson/SPN-ASI.git`
 2. `cd SPN-ASI`
 3. `virtualenv --system-site-packages -p python3 ~/venv/SPN-ASI`
