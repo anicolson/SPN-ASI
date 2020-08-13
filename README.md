@@ -29,7 +29,7 @@ The clean speech of the speakers included in the TIMIT corpus are used to train 
 
 **Noisy speech and *a priori* SNR estimates:**
 
-The noisy speech and *a priori* SNR estimates used for testing the ASI system. **The noisy speech and *a priori* SNR estimates can be obtained from: [http://dx.doi.org/10.21227/nbec-q510](http://dx.doi.org/10.21227/nbec-q510).** Please see the [Deep Xi](https://github.com/anicolson/DeepXi) repository if you require outputs from an *a priori* SNR estimator. The paths to the noisy speech and *a priori* SNR estimates are set in [`config.sh`](https://github.com/anicolson/SPN-ASI/blob/master/config.sh).
+The noisy speech and *a priori* SNR estimates used for testing the ASI system can be obtained from: [http://dx.doi.org/10.21227/nbec-q510](http://dx.doi.org/10.21227/nbec-q510). Please see the [Deep Xi](https://github.com/anicolson/DeepXi) repository if you require outputs from an *a priori* SNR estimator. The paths to the noisy speech and *a priori* SNR estimates are set in [`config.sh`](https://github.com/anicolson/SPN-ASI/blob/master/config.sh).
 
 How to use the ASI system
 -----
