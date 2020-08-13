@@ -25,7 +25,7 @@ Dataset
 -----
 **TIMIT corpus for clean speech:**
 
-The clean speech for the speakers included in the TIMIT corpus are used to train the ASI system. The path to the TIMIT corpus is set in [`config.sh`]().
+The clean speech of the speakers included in the TIMIT corpus are used to train the ASI system. The path to the TIMIT corpus is set in [`config.sh`]().
 
 **Noisy speech and *a priori* SNR estimates:**
 
