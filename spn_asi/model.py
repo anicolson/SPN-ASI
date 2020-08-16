@@ -211,7 +211,7 @@ class SPNASISystem():
 				f.write("ver,acc\n")
 
 		with open(results_path + "/average.csv", "a") as f:
-			f.write("{:s},{:.4f}\n".format(self.ver, correct/total))
+			f.write("{:s},{:.4f}\n".format(self.ver, 100*(correct/total)))
 
 		if eval_cond:
 			noise_srcs, snr_levels = set(), set()
@@ -227,7 +227,7 @@ class SPNASISystem():
 				for i in sorted(noise_srcs):
 					for j in sorted(snr_levels):
 						f.write("{},{},{},{},{:.2f}\n".format(marg,
-							bounds, i, j, np.mean(results[(i,j)])))
+							bounds, i, j, 100*np.mean(results[(i,j)])))
 
 	def sequence_log_likelihood(self, model, observation, spk, bounds=False, ibm=None):
 		"""
