@@ -1,4 +1,4 @@
-spflow
 pysoundfile
 tensorflow
 tqdm
+spflow
