@@ -10,7 +10,7 @@ T_S=16
 N_SUBBANDS=26
 MIN_INSTANCES_SLICE=50
 THRESHOLD=0.3
-N_WORKERS=6 # SET FOR 32GB OF RAM.
+N_WORKERS=18 # used about 25 GB of RAM.
 
 python3 main.py --gpu $GPU                                                \
                 --ver $VER                                                \

@@ -211,7 +211,7 @@ class SPNASISystem():
 				f.write("ver,acc\n")
 
 		with open(results_path + "/average.csv", "a") as f:
-			f.write("{:s},{:.4f}\n".format(self.ver, 100*(correct/total)))
+			f.write("{:s},{:.2f}\n".format(self.ver, 100*(correct/total)))
 
 		if eval_cond:
 			noise_srcs, snr_levels = set(), set()

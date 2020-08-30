@@ -50,15 +50,15 @@ if __name__ == '__main__':
 	if args.identification:
 
 		## CLEAN SPEECH
-		asi.identification(
-			spk_obs=spk_obs,
-			model_path=args.model_path,
-			marg=False,
-			bounds=False,
-			n_workers=args.n_workers,
-			eval_cond=False,
-			test_set_name = "timit",
-		)
+		# asi.identification(
+		# 	spk_obs=spk_obs,
+		# 	model_path=args.model_path,
+		# 	marg=False,
+		# 	bounds=False,
+		# 	n_workers=args.n_workers,
+		# 	eval_cond=False,
+		# 	test_set_name = "timit",
+		# )
 
 		## NOISY SPEECH
 		asi.identification(

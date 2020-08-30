@@ -19,6 +19,13 @@ case `hostname` in
 		XI_HAT_PATH='/home/aaron/mnt/aaron/set/spn_asi_20/xi_hat_deep_xi_3e_e150'
 		MODEL_PATH='/home/aaron/mnt/fist/model/'$PROJ_DIR
     ;;
+"kuldip")  echo "Running on `hostname`."
+		DATA_PATH='/home/aaron/mnt/fist/data/'$PROJ_DIR
+		SET_PATH='/home/aaron/mnt/aaron_root/mnt/hdd1/set/timit_wav/timit'
+		NOISY_SPEECH_PATH='/home/aaron/mnt/aaron/set/spn_asi_20/noisy_speech'
+		XI_HAT_PATH='/home/aaron/mnt/aaron/set/spn_asi_20/xi_hat_deep_xi_3e_e150'
+		MODEL_PATH='/home/aaron/mnt/fist/model/'$PROJ_DIR
+    ;;
 *) echo "`hostname` is not a known workstation. Using default paths."
 		DATA_PATH='data'
 		SET_PATH='timit'
@@ -29,27 +36,34 @@ case `hostname` in
 esac
 
 get_free_gpu () {
-    NUM_GPU=$( nvidia-smi --query-gpu=pci.bus_id --format=csv,noheader | wc -l )
-    echo "$NUM_GPU total GPU/s."
-    if [ $1 -eq 1  ]
-    then
-        echo 'Sleeping'
-        sleep 1m
-    fi
-    while true
-    do
-        for (( gpu=0; gpu<$NUM_GPU; gpu++ ))
-        do
-            VAR1=$( nvidia-smi -i $gpu --query-gpu=pci.bus_id --format=csv,noheader )
-            VAR2=$( nvidia-smi -i $gpu --query-compute-apps=gpu_bus_id --format=csv,noheader | head -n 1)
-            if [ "$VAR1" != "$VAR2" ]
-            then
-                return $gpu
-            fi
-        done
-        echo 'Waiting for free GPU.'
-        sleep 1m
-    done
+
+	if ! command -v nvidia-smi &> /dev/null
+	then
+	    echo "No CUDA devices available, using CPU."
+	    return 9999
+	else
+		NUM_GPU=$( nvidia-smi --query-gpu=pci.bus_id --format=csv,noheader | wc -l )
+		echo "$NUM_GPU total GPU/s."
+		if [ $1 -eq 1  ]
+		then
+			echo 'Sleeping'
+			sleep 1m
+		fi
+		while true
+		do
+			for (( gpu=0; gpu<$NUM_GPU; gpu++ ))
+			do
+				VAR1=$( nvidia-smi -i $gpu --query-gpu=pci.bus_id --format=csv,noheader )
+				VAR2=$( nvidia-smi -i $gpu --query-compute-apps=gpu_bus_id --format=csv,noheader | head -n 1)
+				if [ "$VAR1" != "$VAR2" ]
+				then
+					return $gpu
+				fi
+			done
+			echo 'Waiting for free GPU.'
+			sleep 1m
+		done
+	fi
 }
 
 TRAIN=0
